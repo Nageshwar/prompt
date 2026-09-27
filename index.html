@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI & Industry 4.0 Tools for Students - Presentation Deck</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #0f172a;
+    color: #2c3e50;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 16px 90px;
+    overflow-x: hidden;
+  }
+
+  .deck-container {
+    width: 100%;
+    max-width: 1040px;
+    position: relative;
+  }
+
+  .slide {
+    display: none; /* Controlled via JS */
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #dfe6e9;
+    padding: 38px 46px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
+    min-height: 610px;
+    flex-direction: column;
+    justify-content: space-between;
+    animation: fadeIn 0.22s ease-in-out;
+  }
+
+  .slide.active {
+    display: flex;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .slide.hero-slide {
+    background: linear-gradient(135deg, #1e293b 0%, #2c3e50 50%, #1e3a8a 100%);
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide.closing-slide {
+    background: #2c3e50;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .header {
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+
+  .category {
+    font-size: 11px;
+    font-weight: 700;
+    color: #3498db;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 4px;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  .definition {
+    font-size: 13px;
+    color: #7f8c8d;
+    margin-top: 4px;
+    font-weight: 500;
+  }
+
+  .content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .banner-box {
+    background: #e8f4fd;
+    border-left: 4px solid #3498db;
+    padding: 11px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex-grow: 1;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    flex-grow: 1;
+  }
+
+  .grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    flex-grow: 1;
+  }
+
+  .card {
+    background: #f8f9fa;
+    border: 1px solid #dfe6e9;
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .card-navy { border-top: 4px solid #2c3e50; }
+  .card-blue { border-top: 4px solid #3498db; }
+  .card-green { border-top: 4px solid #27ae60; }
+  .card-amber { border-top: 4px solid #f39c12; }
+  .card-purple { border-top: 4px solid #9b59b6; }
+  .card-red { border-top: 4px solid #e74c3c; }
+
+  .code-box {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 11px;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .code-box-header {
+    font-family: "Segoe UI", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .output-box {
+    background: #f8f9fa;
+    border: 1px solid #dfe6e9;
+    border-left: 4px solid #27ae60;
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #2c3e50;
+  }
+  .output-box-header {
+    font-size: 11px;
+    font-weight: 700;
+    color: #27ae60;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+  }
+
+  .footer {
+    border-top: 1px solid #ecf0f1;
+    padding-top: 10px;
+    font-size: 11px;
+    color: #95a5a6;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+
+  table.matrix-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  table.matrix-table th {
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  table.matrix-table td {
+    padding: 8px 12px;
+    border: 1px solid #dfe6e9;
+    color: #2c3e50;
+  }
+  table.matrix-table tr:nth-child(even) td {
+    background: #f8f9fa;
+  }
+  ul, ol { padding-left: 18px; }
+  li { margin-bottom: 6px; font-size: 12.5px; line-height: 1.5; }
+
+  /* ================= NAV CONTROLLER ================= */
+  .nav-bar {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .nav-btn {
+    background: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  .nav-btn:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-1px);
+  }
+  .nav-btn:disabled {
+    background: #475569;
+    color: #94a3b8;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .slide-counter {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #e2e8f0;
+    min-width: 105px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  .keyboard-hint {
+    font-size: 11px;
+    color: #64748b;
+    margin-left: 4px;
+  }
+  @media (max-width: 600px) {
+    .keyboard-hint { display: none; }
+    .slide { padding: 24px 20px; }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-5 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck-container">
+
+  <!-- SLIDE 1 -->
+  <div class="slide hero-slide active" data-slide="1">
+    <div style="font-size: 12px; font-weight: 700; color: #38bdf8; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px;">
+      Hands-On Masterclass &amp; Student Workshop
+    </div>
+    <div style="font-size: 36px; font-weight: 800; line-height: 1.25; margin-bottom: 14px;">
+      AI &amp; Industry 4.0 Tools for Students
+    </div>
+    <div style="font-size: 17px; color: #cbd5e1; max-width: 780px; margin-bottom: 26px; line-height: 1.4;">
+      Mastering 10 Prompt Frameworks, Local AI (Ollama), and Autonomous Campus Automation with n8n
+    </div>
+    <div style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 8px 24px; font-size: 12px; color: #e2e8f0;">
+      ⚡ Zero Cloud API Costs &nbsp;•&nbsp; 🔒 100% Local Privacy &nbsp;•&nbsp; 🎓 Practical College Portal Automations
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" data-slide="2">
+    <div class="header">
+      <div class="category">AI &amp; Industry 4.0 for Students</div>
+      <div class="title">What is Industry 4.0? (A Student's Perspective)</div>
+      <div class="definition">Bridging physical college life with smart automation</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>Core Principle:</strong> Industry 4.0 isn't just for massive car factories—it connects physical sensors, real-time data, and automated AI reasoning. In everyday student life, systems coordinate automatically instead of requiring constant manual oversight.
+      </div>
+      <div class="grid-2">
+        <div class="card card-red">
+          <h4 style="color: #c0392b; margin-bottom: 10px;">🏛️ Traditional Campus (Manual &amp; Reactive)</h4>
+          <ul>
+            <li>Walking repeatedly to physical notice boards to check for examination circulars.</li>
+            <li>Checking dormitory laundry rooms manually only to find all washing machines busy.</li>
+            <li>Manually emailing professors for assignment extensions across multiple fragmented threads.</li>
+            <li>Repeatedly refreshing university portals on result days causing high server anxiety.</li>
+          </ul>
+        </div>
+        <div class="card card-green">
+          <h4 style="color: #27ae60; margin-bottom: 10px;">🚀 Industry 4.0 Campus (Connected &amp; Autonomous)</h4>
+          <ul>
+            <li>Smart Notice Board Radar scrapes college website and dispatches Telegram summaries.</li>
+            <li>IoT vibration sensors monitor machines and notify your phone 5 minutes before cycles end.</li>
+            <li>AI agents parse syllabi, organize calendars, and auto-sync deadlines.</li>
+            <li>Automated bots watch for university marksheet links and alert group chats instantly.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 2 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" data-slide="3">
+    <div class="header">
+      <div class="category">AI &amp; Industry 4.0 for Students</div>
+      <div class="title">What is an AI Agent?</div>
+      <div class="definition">Moving from static chatbots to autonomous problem-solvers</div>
+    </div>
+    <div class="content-area">
+      <div class="grid-2">
+        <div class="card card-navy">
+          <h4 style="color: #2c3e50; margin-bottom: 12px;">💬 Standard Chatbot (Passive Responder)</h4>
+          <ul>
+            <li><strong>Waiting:</strong> Sits passively waiting for a human to type into a prompt box.</li>
+            <li><strong>Isolated:</strong> Has no connection to tools, calendars, email, or live college web pages.</li>
+            <li><strong>Static Words:</strong> Generates helpful text, but cannot execute actual actions.</li>
+            <li><strong>Analogy:</strong> Like asking an advisor a question in office hours—informative, but you still have to do all the manual work yourself.</li>
+          </ul>
+        </div>
+        <div class="card card-blue">
+          <h4 style="color: #2980b9; margin-bottom: 12px;">🤖 Autonomous AI Agent (Perceive, Reason, Act)</h4>
+          <ul>
+            <li><strong>Perceive:</strong> Continuously monitors web pages, webhooks, RSS feeds, or sensor data.</li>
+            <li><strong>Reason:</strong> Evaluates conditions, parses structured schemas, and plans sequential steps.</li>
+            <li><strong>Act:</strong> Triggers real-world tools (sends Telegram alerts, updates Google Calendar, writes Notion docs).</li>
+            <li><strong>Analogy:</strong> Like an industrious student assistant working 24/7 in the background for your campus life.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 3 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide" data-slide="4">
+    <div class="header">
+      <div class="category">AI &amp; Industry 4.0 for Students</div>
+      <div class="title">The Zero-Cost Student Automation Architecture</div>
+      <div class="definition">How the 3 components connect seamlessly on your laptop</div>
+    </div>
+    <div class="content-area">
+      <div class="grid-3">
+        <div class="card card-blue">
+          <h4 style="color: #2980b9; margin-bottom: 8px;">1. Local AI Brain<br/>(Ollama)</h4>
+          <p style="font-size: 11.5px; color: #7f8c8d; margin-bottom: 10px;">Runs models like <code>qwen2.5:3b</code> locally on your laptop.</p>
+          <ul>
+            <li>Zero API keys, zero monthly fees.</li>
+            <li>100% offline capable in classrooms.</li>
+            <li>Complete data privacy: student notes stay on your machine.</li>
+          </ul>
+        </div>
+        <div class="card card-purple">
+          <h4 style="color: #8e44ad; margin-bottom: 8px;">2. Orchestrator<br/>(n8n Engine)</h4>
+          <p style="font-size: 11.5px; color: #7f8c8d; margin-bottom: 10px;">Visual workflow engine running via <code>npx n8n</code>.</p>
+          <ul>
+            <li>Connects triggers (web scraper, schedule, cron).</li>
+            <li>Passes web text into Ollama for reasoning.</li>
+            <li>Visual debugging: inspect live JSON payloads.</li>
+          </ul>
+        </div>
+        <div class="card card-green">
+          <h4 style="color: #27ae60; margin-bottom: 8px;">3. Connected Tools<br/>(Actions &amp; Alerts)</h4>
+          <p style="font-size: 11.5px; color: #7f8c8d; margin-bottom: 10px;">Free endpoints that execute the AI's decisions.</p>
+          <ul>
+            <li>Telegram Bot API for free mobile alerts.</li>
+            <li>Google Calendar node for auto-scheduling.</li>
+            <li>Notion or Google Sheets for task tracking.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 4 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 5 -->
+  <div class="slide" data-slide="5">
+    <div class="header">
+      <div class="category">Prompt Engineering Fundamentals</div>
+      <div class="title">What is a Prompt?</div>
+      <div class="definition">The intern briefing mental model</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>The Core Insight:</strong> When using Google Search, you enter keywords (e.g., <code>SSM college exam routine 2026</code>). But LLMs don't index web pages—they predict contextually appropriate responses. Treat the AI as an eager intern who has read every textbook on Earth but has <em>zero context</em> on your specific situation.
+      </div>
+      <div class="grid-2">
+        <div class="card card-red">
+          <h4 style="color: #c0392b; margin-bottom: 6px;">❌ Vague Keyword Prompt</h4>
+          <div style="background: #fee2e2; padding: 8px; border-radius: 4px; font-family: Consolas, monospace; font-size: 12px; color: #991b1b; margin-bottom: 10px;">
+            "Email professor extension CS102"
+          </div>
+          <p style="font-size: 12px; line-height: 1.5;">
+            <strong>Why it fails:</strong> The AI has no idea who you are, why you need extra time, what assignment it is, or what tone your department expects.<br/>
+            <strong>Result:</strong> Generic fluff with <code>[Insert Name]</code> placeholders that looks sloppy.
+          </p>
+        </div>
+        <div class="card card-green">
+          <h4 style="color: #27ae60; margin-bottom: 6px;">✅ Structured Briefing Prompt</h4>
+          <div style="background: #dcfce7; padding: 8px; border-radius: 4px; font-family: Consolas, monospace; font-size: 12px; color: #166534; margin-bottom: 10px;">
+            "Act as a polite university student. Write a 3-sentence extension request for CS-102 assignment to Prof. Ray due to illness. Ask for 24 hours."
+          </div>
+          <p style="font-size: 12px; line-height: 1.5;">
+            <strong>Why it works:</strong> Supplies persona, context, precise constraints, and tone.<br/>
+            <strong>Result:</strong> A professional, ready-to-send draft that gets approved immediately.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 5 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 6 -->
+  <div class="slide" data-slide="6">
+    <div class="header">
+      <div class="category">Prompt Engineering Fundamentals</div>
+      <div class="title">4 Golden Rules of Effective Prompting</div>
+      <div class="definition">How to get accurate, hallucination-free outputs every time</div>
+    </div>
+    <div class="content-area">
+      <table class="matrix-table">
+        <tr>
+          <th style="width: 25%;">Rule</th>
+          <th style="width: 35%;">What It Means</th>
+          <th style="width: 40%;">Student Example</th>
+        </tr>
+        <tr>
+          <td><strong>1. Assign a Persona</strong></td>
+          <td>Tell the AI who it is (expert tutor, study buddy, reviewer).</td>
+          <td><em>"Act as an expert Computer Science professor at an undergraduate college..."</em></td>
+        </tr>
+        <tr>
+          <td><strong>2. Provide Grounding Context</strong></td>
+          <td>Give background info, constraints, or source text.</td>
+          <td><em>"Here is the official notice text: [paste text]. Use only this."</em></td>
+        </tr>
+        <tr>
+          <td><strong>3. Show, Don't Just Tell (Few-Shot)</strong></td>
+          <td>Provide 1–2 examples of input and expected output.</td>
+          <td><em>"Notice: 'Fee due Friday' -&gt; [Action] Pay fee by Friday."</em></td>
+        </tr>
+        <tr>
+          <td><strong>4. Enforce Output Format</strong></td>
+          <td>Specify whether you want bullet points, Markdown table, or strict JSON.</td>
+          <td><em>"Return strict JSON with keys: title, date, urgent."</em></td>
+        </tr>
+      </table>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 6 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 7 -->
+  <div class="slide" data-slide="7">
+    <div class="header">
+      <div class="category">Prompt Engineering Fundamentals</div>
+      <div class="title">The Prompt Building Blocks Formula</div>
+      <div class="definition">Mastering the complete structural equation</div>
+    </div>
+    <div class="content-area">
+      <div style="background: #2c3e50; color: #ffffff; text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; font-size: 15px; font-family: Consolas, monospace;">
+        PROMPT = Persona + Objective + Example + Format + Tone
+      </div>
+      <div class="grid-5">
+        <div class="card card-blue">
+          <h5 style="color: #2980b9; margin-bottom: 6px;">1. Persona</h5>
+          <p style="font-size: 11px; color: #2c3e50; margin-bottom: 6px;">The specific role the LLM assumes.</p>
+          <p style="font-size: 10px; color: #7f8c8d;"><em>e.g., Campus Robotics Club President</em></p>
+        </div>
+        <div class="card card-green">
+          <h5 style="color: #27ae60; margin-bottom: 6px;">2. Objective</h5>
+          <p style="font-size: 11px; color: #2c3e50; margin-bottom: 6px;">The primary goal and boundaries.</p>
+          <p style="font-size: 10px; color: #7f8c8d;"><em>e.g., Write WhatsApp recruitment copy</em></p>
+        </div>
+        <div class="card card-amber">
+          <h5 style="color: #d35400; margin-bottom: 6px;">3. Example</h5>
+          <p style="font-size: 11px; color: #2c3e50; margin-bottom: 6px;">A sample input and output pair.</p>
+          <p style="font-size: 10px; color: #7f8c8d;"><em>e.g., One-shot template to mirror</em></p>
+        </div>
+        <div class="card card-purple">
+          <h5 style="color: #8e44ad; margin-bottom: 6px;">4. Format</h5>
+          <p style="font-size: 11px; color: #2c3e50; margin-bottom: 6px;">Structural shape of the response.</p>
+          <p style="font-size: 10px; color: #7f8c8d;"><em>e.g., 3 bullet points + RSVP link</em></p>
+        </div>
+        <div class="card card-red">
+          <h5 style="color: #c0392b; margin-bottom: 6px;">5. Tone</h5>
+          <p style="font-size: 11px; color: #2c3e50; margin-bottom: 6px;">Voice style and mood.</p>
+          <p style="font-size: 10px; color: #7f8c8d;"><em>e.g., Energetic, concise, relatable</em></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 7 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 8 -->
+  <div class="slide" data-slide="8">
+    <div class="header">
+      <div class="category">Prompt Engineering Fundamentals</div>
+      <div class="title">Building Blocks in Action: Campus Club Recruitment</div>
+      <div class="definition">Assembling the 5 building blocks for zero-fluff copy</div>
+    </div>
+    <div class="content-area">
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 The Assembled 5-Part Prompt</div>[Persona]: Act as head of the College Robotics Club.
+[Objective]: Write a WhatsApp announcement recruiting 1st and 2nd year students for our Hackathon.
+[Example]:
+Notice: "Meeting at 5pm room 204."
+-&gt; "🤖 Builders Wanted! Kickstart your coding journey at 5 PM in Room 204. Free pizza!"
+[Format]:
+- Catchy headline with 1 emoji
+- 2 bullet points on benefits
+- Meeting date, time &amp; room
+- Call to Action button link
+[Tone]: Energetic, welcoming to beginners, zero jargon.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>🚀 Build Robots, Win Prizes: Robotics Club 2026!</strong><br/><br/>
+          No prior coding experience needed—if you love tinkering, you belong here!<br/><br/>
+          • Learn Arduino, 3D printing &amp; AI from senior mentors.<br/>
+          • Build real hardware projects for inter-college hackathons.<br/><br/>
+          📍 <strong>Where:</strong> Makerspace Lab (Room 304)<br/>
+          🗓️ <strong>When:</strong> Thursday, Oct 8th @ 4:30 PM<br/><br/>
+          👉 <strong>Register your spot:</strong> bit.ly/ssm-robotics-join
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 8 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 9 -->
+  <div class="slide" data-slide="9">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">8 Foundational Prompting Techniques: Master Matrix</div>
+      <div class="definition">From simple pattern replication to autonomous agent reasoning loops</div>
+    </div>
+    <div class="content-area">
+      <table class="matrix-table">
+        <tr>
+          <th style="width: 20%;">Technique</th>
+          <th style="width: 42%;">Core Concept</th>
+          <th style="width: 38%;">Student Everyday Use Case</th>
+        </tr>
+        <tr><td><strong>1. One-Shot</strong></td><td>Provide 1 example; model replicates exact style.</td><td>Formatting raw hostel notices into bullet tasks.</td></tr>
+        <tr><td><strong>2. Few-Shot</strong></td><td>Provide 2–5 examples for pattern consistency.</td><td>Classifying WhatsApp chat messages into categories.</td></tr>
+        <tr><td><strong>3. Chain-of-Thought</strong></td><td>Force step-by-step reasoning before output.</td><td>Splitting apartment utility bills fairly across winter break.</td></tr>
+        <tr><td><strong>4. Tree-of-Thought</strong></td><td>Explore multiple branching options, evaluate trade-offs.</td><td>Strategizing exam study schedule across multiple finals.</td></tr>
+        <tr><td><strong>5. Self-Consistency</strong></td><td>Run multiple independent paths to find consensus.</td><td>Resolving ambiguous grading or attendance rubrics.</td></tr>
+        <tr><td><strong>6. Meta-Prompting</strong></td><td>Direct the AI to design or improve prompts.</td><td>Creating an interactive quiz tutor system prompt.</td></tr>
+        <tr><td><strong>7. Iterative</strong></td><td>Refine output interactively across multiple turns.</td><td>Polishing a formal professor email request.</td></tr>
+        <tr><td><strong>8. ReAct Loop</strong></td><td>Thought ➔ Action ➔ Observation execution cycle.</td><td>Autonomous library book search and hold reservation.</td></tr>
+      </table>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 9 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 10 -->
+  <div class="slide" data-slide="10">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 1: One-Shot Prompting</div>
+      <div class="definition">Mastering pattern matching with a single reference sample</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Give 1 clear example so the AI instantly grasps the desired output pattern.<br/>
+        <strong>🎯 Student Use Case:</strong> Standardizing raw, messy hostel or college notices into clean bullet action items.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>Convert this messy hostel announcement into a structured action item.
+
+Example:
+Input: "Urgent! Everyone must submit mess fees by 5pm Friday to room 102 or late fine of 100 will apply."
+Output:
+- Task: Submit Mess Fees
+- Deadline: Friday, 5:00 PM
+- Location: Room 102
+- Penalty: Rs 100 late fine
+
+Input: "Library books must be renewed before Tuesday at the main desk. Closed on Monday for pest control."
+Output:
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          • <strong>Task:</strong> Renew Library Books<br/>
+          • <strong>Deadline:</strong> Tuesday (Regular Desk Hours)<br/>
+          • <strong>Location:</strong> Main Circulation Desk<br/>
+          • <strong>Important Note:</strong> Closed on Monday for pest control
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 10 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 11 -->
+  <div class="slide" data-slide="11">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 2: Few-Shot Prompting</div>
+      <div class="definition">Teaching categorization and schema mapping across multiple examples</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Provide 2–4 examples to establish strong classification and key-value mapping.<br/>
+        <strong>🎯 Student Use Case:</strong> Sorting student community group messages into priority categories.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>Classify student WhatsApp community messages into: [Category] &amp; [Urgency: High/Medium/Low].
+
+Example 1: "Anyone selling 2nd semester Engineering Math textbook?"
+-&gt; Category: Marketplace | Urgency: Low
+
+Example 2: "Water outage in Block B starting right now until midnight!"
+-&gt; Category: Hostel Alerts | Urgency: High
+
+Example 3: "Bus to station leaving in 10 mins from main gate, 2 seats free."
+-&gt; Category: Transport | Urgency: Medium
+
+Message to Classify: "Lost my black Lenovo laptop charger in Lab 2 today!"
+Output:
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Category:</strong> Lost &amp; Found<br/>
+          <strong>Urgency:</strong> High
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 11 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 12 -->
+  <div class="slide" data-slide="12">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 3: Chain-of-Thought (CoT) Prompting</div>
+      <div class="definition">Step-by-step deliberate reasoning for calculation accuracy</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Instruct the model to reason step-by-step before concluding, preventing math hallucinations.<br/>
+        <strong>🎯 Student Use Case:</strong> Fairly splitting shared student apartment rent and Wi-Fi based on actual days stayed.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>Calculate roommate Wi-Fi bill split step-by-step.
+Total bill is $60 for the month of January (30 days total).
+- Roommate Alex stayed all 30 days.
+- Roommate Sam went home for winter break and stayed only 10 days.
+- Roommate Chris stayed 20 days.
+
+Think step-by-step to calculate how much each person owes fairly based on person-days.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Step 1: Calculate total person-days:</strong><br/>
+          • Alex: 30 days | Sam: 10 days | Chris: 20 days<br/>
+          Total = 30 + 10 + 20 = 60 person-days.<br/><br/>
+          <strong>Step 2: Calculate daily rate per person-day:</strong><br/>
+          • $60 total bill / 60 person-days = $1.00 per person per day.<br/><br/>
+          <strong>Step 3: Multiply each person's days by daily rate:</strong><br/>
+          • Alex owes: 30 * $1.00 = $30.00<br/>
+          • Sam owes: 10 * $1.00 = $10.00<br/>
+          • Chris owes: 20 * $1.00 = $20.00<br/><br/>
+          <strong>Final Balance:</strong> Alex: $30 | Sam: $10 | Chris: $20 (Total = $60.00).
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 12 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 13 -->
+  <div class="slide" data-slide="13">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 4: Tree-of-Thought (ToT) Prompting</div>
+      <div class="definition">Evaluating branching possibilities before picking the winning strategy</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Explore multiple distinct reasoning paths, evaluate trade-offs, and synthesize the winner.<br/>
+        <strong>🎯 Student Use Case:</strong> Optimizing study schedule when having 2 finals and a project deadline in the same 4 days.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>I have 2 finals (Algorithms on Thursday, Database on Friday) and a Software Project due Wednesday. Today is Sunday.
+Evaluate 3 different preparation strategies:
+- Strategy A: Finish project completely by Monday, then cram.
+- Strategy B: Dedicate morning to project, afternoon to Algorithms, evening to DB.
+- Strategy C: Work on project until 70% complete, switch to exams, finish project Tuesday night.
+
+Compare trade-offs of each path and recommend the winning strategy.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Path A Evaluation:</strong> High risk—project debugging could eat study days.<br/><br/>
+          <strong>Path B Evaluation (Winner):</strong> Balances cognitive load using spaced repetition. Daily progress prevents panic.<br/><br/>
+          <strong>Path C Evaluation:</strong> Leaving 30% of project for last night risks exhaustion.<br/><br/>
+          <strong>Recommended Plan (Strategy B):</strong><br/>
+          • 9 AM–1 PM: Project sprints<br/>
+          • 2 PM–6 PM: Algorithms theory &amp; practice<br/>
+          • 7 PM–10 PM: Database SQL &amp; queries.
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 13 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 14 -->
+  <div class="slide" data-slide="14">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 5: Self-Consistency Prompting</div>
+      <div class="definition">Majority voting across diverse reasoning paths</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Sample multiple diverse reasoning trajectories and pick the consensus answer.<br/>
+        <strong>🎯 Student Use Case:</strong> Interpreting ambiguous college grading rubric and attendance leave policy.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>College Rule: "A student requires 75% attendance to sit for finals. Certified medical leaves submitted within 48 hours are exempted from the denominator."
+Student was absent 10 out of 40 classes. 4 absences have medical certificates submitted on day 2 (within 48 hours).
+
+Simulate 3 independent evaluations to check if student meets 75% threshold, then take consensus.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Reasoning Path 1:</strong> Total counted classes = 40 - 4 = 36. Attended = 30. Attendance = 30/36 = 83.3% &gt;= 75%. Eligible.<br/><br/>
+          <strong>Reasoning Path 2:</strong> Excused absences reduce counted sessions to 36. Ratio = 83.33%. Above 75% cutoff.<br/><br/>
+          <strong>Reasoning Path 3:</strong> Denominator: 36. Numerator: 30. 30/36 = 83.3%. Passes cutoff.<br/><br/>
+          <strong>Consensus:</strong> Eligible to appear for exams (83.3% attendance).
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 14 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 15 -->
+  <div class="slide" data-slide="15">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 6: Meta-Prompting (Prompt Design with AI)</div>
+      <div class="definition">Using the model to architect specialized system instructions</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Prompt the AI to write, debug, and optimize a prompt for another specialized AI agent.<br/>
+        <strong>🎯 Student Use Case:</strong> Designing an interactive exam quiz bot system prompt for student test preparation.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>You are an expert prompt engineer.
+Write a comprehensive system prompt for an AI agent called "StudyBuddy".
+It must:
+1. Act as a strict but encouraging Organic Chemistry tutor.
+2. Ask the student one question at a time.
+3. Wait for the user's answer before evaluating.
+4. Give a subtle hint if wrong; give celebration + next question if right.
+5. Never dump answers all at once.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Generated System Prompt for StudyBuddy:</strong><br/><br/>
+          <em>"You are StudyBuddy, an encouraging Organic Chemistry tutor.<br/>
+          Rules:<br/>
+          1. Present exactly ONE question at a time about reaction mechanisms or nomenclature.<br/>
+          2. Stop and wait for the student to submit their answer.<br/>
+          3. If correct: Celebrate briefly, explain why, then present Question N+1.<br/>
+          4. If incorrect: Give ONE conceptual hint and ask them to retry. Do not reveal the answer.<br/>
+          5. Keep explanations under 3 sentences."</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 15 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 16 -->
+  <div class="slide" data-slide="16">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 7: Iterative Refinement Prompting</div>
+      <div class="definition">Polishing output through multi-turn feedback loops</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> Improve output quality through conversational multi-turn feedback loops.<br/>
+        <strong>🎯 Student Use Case:</strong> Refining an assignment deadline extension email to a professor.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 3-Turn Iteration Log</div>Turn 1: "Write an email to my professor asking for 2 more days on my lab report."
+Output 1: "Dear Professor, I hope you are having a wonderful week! I am writing to humbly request... [200 words of filler]"
+
+Turn 2: "Make it much shorter and formal. Mention my course code CS-201 and illness."
+Output 2: "Dear Prof. Ray, Due to fever, I request a 48-hr extension for CS-201 lab report."
+
+Turn 3: "Add my student ID (SSM-2024-104) and offer to attach medical certificate."
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact Final AI Output</div>
+          <strong>Subject:</strong> Extension Request: CS-201 Lab Report - SSM-2024-104<br/><br/>
+          Dear Prof. Ray,<br/><br/>
+          I am writing to request a 48-hour extension on my CS-201 Lab Report (original deadline: Oct 12) due to a viral fever.<br/><br/>
+          I have attached my medical certificate from the campus health center. Thank you for your consideration.<br/><br/>
+          Respectfully,<br/>
+          <strong>Nageshwar Jha | ID: SSM-2024-104</strong>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 16 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 17 -->
+  <div class="slide" data-slide="17">
+    <div class="header">
+      <div class="category">Foundational Prompting Techniques</div>
+      <div class="title">Technique 8: ReAct (Reason + Act) Agent Loop</div>
+      <div class="definition">The foundational loop powering modern autonomous AI agents</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Core Idea:</strong> The foundation of autonomous AI agents: Thought ➔ Action ➔ Observation ➔ Final Answer.<br/>
+        <strong>🎯 Student Use Case:</strong> Autonomous library book search and hold reservation bot.
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Agent Execution Trace</div>Goal: Check if 'Clean Code' book is available in college library and reserve it.
+
+Thought: I need to query the college library catalog database.
+Action: library_search(title="Clean Code")
+Observation: Found 1 copy available, Shelf 4B, Barcode #98231.
+
+Thought: The book is on the shelf. I should place an active hold for the student.
+Action: place_reservation(barcode="98231", student_id="SSM-104")
+Observation: Reservation confirmed. Hold valid for 24 hours until Oct 13, 5 PM.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Final User Response</div>
+          <strong>Success!</strong> 'Clean Code' has been reserved under your student ID (SSM-104).<br/><br/>
+          📍 <strong>Location:</strong> Main Desk (Shelf 4B, Barcode #98231)<br/>
+          ⏳ <strong>Hold Expiration:</strong> Oct 13, 5:00 PM<br/><br/>
+          <em>Please present your college ID card at the desk to complete checkout.</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 17 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 18 -->
+  <div class="slide" data-slide="18">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 1: RTF (Role, Task, Format)</div>
+      <div class="definition">Direct, straightforward text generation and rapid code debugging.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Role + Task + Format &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Python lab web scraping script
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Role]: Act as a Senior Python Teaching Assistant.
+[Task]: Write a Python script using requests &amp; BeautifulSoup to scrape the latest notice headline from 'ssmahavidyalaya.edu.in/blog/'. Add error handling for HTTP 404/500 errors.
+[Format]:
+- Python code block with inline comments
+- 2-sentence explanation of how the try-except block works
+- Output ONLY code and explanation.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <div style="background: #ffffff; border: 1px solid #dfe6e9; padding: 8px; border-radius: 4px; font-family: Consolas, monospace; font-size: 11px; margin-bottom: 8px;">import requests
+from bs4 import BeautifulSoup
+
+url = "https://ssmahavidyalaya.edu.in/blog/"
+try:
+    response = requests.get(url, timeout=10)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, 'html.parser')
+    latest_notice = soup.find('h2', class_='entry-title').text.strip()
+    print(f"Latest Notice: {latest_notice}")
+except requests.exceptions.RequestException as e:
+    print(f"Scraping Error: {e}")</div>
+          <p style="font-size: 11.5px; color: #475569;">
+            <strong>Explanation:</strong> The script uses <code>response.raise_for_status()</code> to flag HTTP status errors immediately. Any network failure is caught by <code>RequestException</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 18 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 19 -->
+  <div class="slide" data-slide="19">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 2: TAG (Task, Action, Goal)</div>
+      <div class="definition">Aligns day-to-day student actions with clear, measurable academic or club goals.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Task + Action + Goal &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Club workshop sponsorship pitch to HOD
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Task]: Organize a 1-day campus AI &amp; Web3 workshop before midterm week.
+[Action]: Draft an executive sponsorship email pitch to the Head of the Department (HOD) requesting permission and auditorium access.
+[Goal]: Secure official department approval, faculty sponsorship, and access to the main seminar hall without budget friction.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>Subject: Proposal: 1-Day Student AI &amp; Automation Workshop</strong><br/><br/>
+          Dear Prof. Mukherjee (Head of Department),<br/><br/>
+          Our student tech club proposes hosting a 1-day, zero-cost workshop: <em>"Hands-on AI Automation for Student Innovators"</em> on Saturday, Oct 24 in the Main Seminar Hall.<br/><br/>
+          <strong>Key Benefits:</strong><br/>
+          1. Practical exposure: Students run local AI models (Ollama) with 0 API costs.<br/>
+          2. Skill building: Building automated scrapers for college research and portals.<br/>
+          3. Zero budget required: Club members provide mentors and open-source tooling.<br/><br/>
+          We kindly request your approval for seminar hall reservation (10 AM–4 PM).<br/><br/>
+          Respectfully,<br/><strong>Nageshwar Jha | President, Student Tech Society</strong>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 19 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 20 -->
+  <div class="slide" data-slide="20">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 3: RACE (Role, Action, Context, Expectation)</div>
+      <div class="definition">Operational, team-focused communications for student committees and event management.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Role + Action + Context + Expectation &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> College annual fest stage volunteer dispatch
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Role]: Lead Logistics Coordinator for the College Annual Fest 'Waves 2026'.
+[Action]: Write an operational coordination message for the 15 student stage volunteers.
+[Context]: Sound checks start in 45 minutes; headlining band's bus delayed by 30 mins; crowd entry opens at 4:30 PM.
+[Expectation]: High-urgency checklist detailing exact stage positions, walkie-talkie channels, and crowd barricade protocols.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          🚨 <strong>OPERATIONAL DISPATCH: STAGE VOLUNTEERS (URGENT)</strong><br/><br/>
+          Team, live schedule adjustment. Read carefully:<br/>
+          • Headliner bus delayed 30 mins (Soundcheck shifts to 3:45 PM).<br/>
+          • Gates open promptly at 4:30 PM (No delay on gate timing).<br/><br/>
+          <strong>Immediate Action Protocols:</strong><br/>
+          1. <strong>Channel Check:</strong> Switch all walkie-talkies to Channel 3 immediately.<br/>
+          2. <strong>Barricade Line (Volunteers 1–8):</strong> Lock perimeter gates; verify wristbands at Entry A.<br/>
+          3. <strong>Green Room &amp; Stage (Volunteers 9–15):</strong> Guard backstage ramp; escort audio crew only.<br/><br/>
+          <em>Report any incident via Channel 3. Let's make it a stellar show!</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 20 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 21 -->
+  <div class="slide" data-slide="21">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 4: PREP (Purpose, Request, Example, Output)</div>
+      <div class="definition">Anchors outputs using reference samples to eliminate generic, robotic academic text.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Purpose + Request + Example + Output &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Capstone IoT project showcase on LinkedIn
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Purpose]: Draft a LinkedIn project showcase post for our semester Capstone IoT project.
+[Request]: Write an engaging 150-word post explaining our Raspberry Pi smart dorm electricity monitor.
+[Example]:
+"🚀 Hardware meets Cloud! This semester, our team built an automated solar tracker that increased panel yield by 28%... [Hook + Metric + GitHub link]"
+[Output]:
+- Hook sentence focusing on reducing hostel power waste
+- 3 key tech stack tags
+- Link to GitHub repository with demo GIF placeholder.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          🚀 <strong>Eliminating Dorm Power Waste with IoT &amp; Edge Computing!</strong><br/><br/>
+          Tired of hostel lights left on all weekend? This semester, our engineering team built "DormWatt"—an automated IoT sensor network using Raspberry Pi and ESP32 that monitors dorm floor power surges and flags phantom draw in real time.<br/><br/>
+          <strong>Highlights:</strong><br/>
+          • Deployed 12 non-invasive CT current sensors across 3 hostel wings.<br/>
+          • Integrated local MQTT broker with n8n to send Telegram alerts when rooms exceed 1.5 kW.<br/>
+          • Reduced idle power waste by 24% over a 3-week pilot test!<br/><br/>
+          Built with: #IoT #RaspberryPi #n8n #CleanTech<br/>
+          👉 github.com/campus-innovators/dormwatt
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 21 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 22 -->
+  <div class="slide" data-slide="22">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 5: ERA (Expectation, Request, Actionable Steps)</div>
+      <div class="definition">Structured analytical, data-driven, and technical debugging tasks for student lab work.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Expectation + Request + Actionable Steps &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Lab database SQL query design &amp; optimization
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Expectation]: A clean, performant SQL query that runs under 50ms without duplicate rows.
+[Request]: Retrieve all students from the 'admissions_2026' table who have paid fees but have not yet registered for their semester 1 lab courses.
+[Actionable Steps]:
+1. Perform an anti-join or LEFT JOIN with 'lab_registrations'.
+2. Filter for paid status ('fee_status = PAID').
+3. Include student ID, full name, email, and department.
+4. Add an index suggestion for optimizing this lookup.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <div style="background: #ffffff; border: 1px solid #dfe6e9; padding: 8px; border-radius: 4px; font-family: Consolas, monospace; font-size: 11px; margin-bottom: 8px;">-- Query: Find enrolled students missing lab registration
+SELECT 
+    a.student_id, a.full_name, a.email, a.department
+FROM admissions_2026 a
+LEFT JOIN lab_registrations lr 
+    ON a.student_id = lr.student_id
+WHERE a.fee_status = 'PAID'
+  AND lr.student_id IS NULL;</div>
+          <p style="font-size: 11.5px; color: #475569;">
+            <strong>Optimization Step:</strong><br/>
+            To keep this query under 50ms on large cohorts, create a composite index:<br/>
+            <code>CREATE INDEX idx_student_labs ON admissions_2026(fee_status, student_id);</code>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 22 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 23 -->
+  <div class="slide" data-slide="23">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 6: CLEAR (Context, Language, Examples, Audience, Response)</div>
+      <div class="definition">Generates highly targeted copy tailored to specific student cohorts and demographics.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Context + Language + Examples + Audience + Response &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Peer-to-peer tutoring community launch
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Context]: Introducing an online peer-tutoring exchange at Sukumar Sengupta Mahavidyalaya.
+[Language]: Casual, relatable, warm, student-friendly English with subtle campus vernacular.
+[Examples]: "Stuck on Calculus integrals at 2 AM? Trade an hour of Java coding help for Math tutoring."
+[Audience]: 1st-year undergraduate students feeling overwhelmed by introductory semester courses.
+[Response]: 4-sentence WhatsApp announcement card with clear call-to-action.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          📚 <strong>Feeling lost in Calculus proofs or Digital Electronics? You are not alone!</strong><br/><br/>
+          Introducing the SSM Peer Exchange: trade 1 hour of help in subjects you are good at (like C programming or English) for 1 hour of tutoring in subjects giving you headaches.<br/><br/>
+          No paid fees, no awkward tutoring centers—just seniors and batchmates helping each other ace midterms.<br/><br/>
+          👉 <strong>Grab your peer study buddy here:</strong> bit.ly/ssm-peer-study
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 23 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 24 -->
+  <div class="slide" data-slide="24">
+    <div class="header">
+      <div class="category">Everyday Prompt Framework</div>
+      <div class="title">Framework 7: CARE (Context, Action, Result, Example)</div>
+      <div class="definition">Showcases structured project case studies, hackathon pitch deep-dives, and portfolio resumes.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Context + Action + Result + Example &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Hackathon project case study write-up for engineering resumes
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Context]: Our team participated in the Smart Bengal Hackathon competing against 60 college teams.
+[Action]: We designed and deployed a self-hosted college notice radar using n8n and local Ollama that scraped SSM portals.
+[Result]: Processed 140+ official circulars with 100% accuracy, cutting student missed deadline inquiries by 85%.
+[Example]: Provide a structured 4-part STAR/CARE portfolio write-up suitable for a Junior Software Engineer resume.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>PROJECT CASE STUDY: AUTOMATED CAMPUS NOTICE RADAR</strong><br/><br/>
+          • <strong>Context:</strong> Students routinely missed critical semester form fill-up dates and scholarship renewals due to fragmented website updates across college portals.<br/>
+          • <strong>Action:</strong> Architected a decentralized automation pipeline combining an n8n webhook engine with local Ollama LLMs (qwen2.5:3b) to scrape, parse, and categorize raw HTML notices every 2 hours without cloud API costs.<br/>
+          • <strong>Result:</strong> Delivered real-time Telegram and calendar alerts for 140+ circulars to 800+ students with 0 server expense and 85% drop in missed deadline inquiries.<br/>
+          • <strong>Exemplar Feature:</strong> Implemented resilient error-handling that falls back to cached RSS feeds during college server downtime.
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 24 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 25 -->
+  <div class="slide" data-slide="25">
+    <div class="header">
+      <div class="category">Education &amp; Instruction Framework</div>
+      <div class="title">Framework 8: CREATE (Context, Role, Task, Audience, Tone, Examples)</div>
+      <div class="definition">Builds comprehensive, curriculum-aligned lesson plans, lab sheets, and workshop schedules.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Context + Role + Explicit Task + Audience + Tone + Examples &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Arduino makerspace lab instruction sheet
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Context]: 3-hour hands-on college makerspace workshop on Arduino and IoT sensors.
+[Role]: Lead Electronics Instructor &amp; Student Lab Assistant.
+[Explicit Task]: Create a modular 3-part lab guide walking beginners through connecting a DHT11 temperature sensor and displaying readings on an LCD display.
+[Audience]: 1st-year B.Sc. Computer Science / Physics students with zero electronics background.
+[Tone]: Encouraging, highly methodical, safety-conscious.
+[Examples]: Include pin wiring table format: [Sensor Pin -&gt; Board Pin].
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>LAB SHEET: INTRODUCTION TO IOT &amp; SENSORS (180 MINS)</strong><br/><br/>
+          Welcome to the Makerspace! Today we build our first smart environmental monitor.<br/><br/>
+          <strong>Wiring Guide (Safety First: Unplug USB before wiring!):</strong><br/>
+          • DHT11 VCC ➔ Arduino 5V<br/>
+          • DHT11 Data ➔ Arduino Digital Pin 2<br/>
+          • DHT11 GND ➔ Arduino GND<br/><br/>
+          <strong>Lab Schedule Breakdown:</strong><br/>
+          1. Part 1 (0–45 mins): Breadboard fundamentals &amp; reading digital sensor data via Serial Monitor.<br/>
+          2. Part 2 (45–100 mins): Connecting I2C 16x2 LCD screen to display temperature in Celsius.<br/>
+          3. Part 3 (100–180 mins): Challenge Sprint! Set buzzer alarm if temp exceeds 32°C.<br/><br/>
+          <em>Stuck? Flag a lab mentor or ask your bench neighbor!</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 25 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 26 -->
+  <div class="slide" data-slide="26">
+    <div class="header">
+      <div class="category">Education &amp; Instruction Framework</div>
+      <div class="title">Framework 9: The Five "S" Model (Student Self-Tutoring)</div>
+      <div class="definition">Enables safe student self-tutoring and Socratic guidance without revealing direct answers.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Set Scene + Specific Task + Stage/Grade + Style + Supervise &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Socratic self-tutoring for Data Structures exams
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Set the Scene]: Preparing for tomorrow's Data Structures final exam on Binary Search Trees (BST).
+[Specific Task]: Help me understand how node deletion works when the node has two children.
+[Stage &amp; Grade]: Undergraduate 2nd-year Computer Science student.
+[Style]: Socratic method—guide me step-by-step with conceptual questions; do NOT give me the full code answer immediately.
+[Supervise]: After each of my replies, tell me if my reasoning is sound, correct misconceptions, and ask the next question.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          Hello! Let's conquer BST node deletion together.<br/><br/>
+          Imagine you have a node 'X' with two children (a left subtree and a right subtree). If we delete 'X', a hole is left in the tree.<br/><br/>
+          To preserve the BST property (all values to the left are smaller, all values to the right are larger), we must replace 'X' with a node that is:<br/>
+          1. Larger than everything in the left subtree, AND<br/>
+          2. Smaller than everything else in the right subtree.<br/><br/>
+          <strong>Here is your first question:</strong><br/>
+          Looking into the right subtree of 'X', which specific node satisfies this condition? <em>(Hint: Think about in-order traversal).</em><br/><br/>
+          Take your time and reply below!
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 26 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 27 -->
+  <div class="slide" data-slide="27">
+    <div class="header">
+      <div class="category">Education &amp; Instruction Framework</div>
+      <div class="title">Framework 10: PARTS (Differentiated Instruction)</div>
+      <div class="definition">Designs tiered, multi-level instruction and assignments tailored to varying student skill levels.</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>💡 Formula:</strong> Persona + Aim + Recipients + Theme + Structure &nbsp;|&nbsp; <strong>🎯 Student Use Case:</strong> Multi-tiered web development API homework
+      </div>
+      <div class="grid-2">
+        <div class="code-box">
+          <div class="code-box-header">📥 Complete Input Prompt</div>[Persona]: Head Teaching Assistant for Web Development 101.
+[Aim]: Design a weekend coding homework assignment on REST APIs with 3 tiered difficulty levels.
+[Recipients]: Diverse student cohort ranging from absolute beginners to advanced coders.
+[Theme]: Campus Canteen Food Ordering System.
+[Structure]:
+- Tier 1 (Foundational): Basic GET requests &amp; HTML display
+- Tier 2 (Intermediate): POST requests, validation, and JSON storage
+- Tier 3 (Advanced): JWT authentication &amp; rate limiting.
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📤 Exact AI Model Output</div>
+          <strong>WEEKEND HOMEWORK: CAMPUS CANTEEN API (CHOOSE YOUR TIER)</strong><br/><br/>
+          Theme: Build a digital ordering service for our college cafeteria!<br/><br/>
+          🟢 <strong>Tier 1: The Fast Snack (Foundational)</strong><br/>
+          • Task: Build an Express.js route <code>GET /menu</code> that returns 5 canteen items as JSON.<br/>
+          • Frontend: Display items on an HTML page using standard <code>fetch()</code>.<br/><br/>
+          🟡 <strong>Tier 2: The Full Meal (Intermediate)</strong><br/>
+          • Task: Build <code>POST /order</code> route. Validate student ID format and item availability.<br/>
+          • Storage: Persist orders into a local <code>orders.json</code> file; return total bill.<br/><br/>
+          🔴 <strong>Tier 3: The Chef's Special (Advanced Challenge)</strong><br/>
+          • Task: Implement role-based JWT access (<code>student</code> vs <code>canteen_admin</code>).<br/>
+          • Add rate limiting (max 5 orders/minute) to prevent bot spam during lunchtime rush.
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 27 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 28 -->
+  <div class="slide" data-slide="28">
+    <div class="header">
+      <div class="category">Local AI Infrastructure</div>
+      <div class="title">Why Local AI with Ollama?</div>
+      <div class="definition">Privacy, speed, and zero third-party API costs for students</div>
+    </div>
+    <div class="content-area">
+      <div class="grid-2">
+        <div class="card card-red">
+          <h4 style="color: #c0392b; margin-bottom: 10px;">☁️ Cloud APIs (OpenAI / Anthropic)</h4>
+          <ul>
+            <li><strong>Financial Barrier:</strong> Requires credit card and prepaid account balances.</li>
+            <li><strong>Token Metering:</strong> Running automated scheduled pipelines costs money on every execution.</li>
+            <li><strong>Security Risk:</strong> Accidentally pushing API keys to GitHub leads to drained bank accounts.</li>
+            <li><strong>Internet Dependent:</strong> Cannot build or debug in campus dead zones without active Wi-Fi.</li>
+          </ul>
+        </div>
+        <div class="card card-green">
+          <h4 style="color: #27ae60; margin-bottom: 10px;">💻 Local AI with Ollama (Self-Hosted)</h4>
+          <ul>
+            <li><strong>100% Free Forever:</strong> Runs models directly on your Mac, Windows, or Linux laptop.</li>
+            <li><strong>Zero API Keys:</strong> Nothing to leak, nothing to renew, zero surprise billing.</li>
+            <li><strong>Total Privacy:</strong> Personal notes, student databases, and scraper outputs never leave your disk.</li>
+            <li><strong>Offline Capable:</strong> Test and demo your agents inside lecture halls with zero internet connection.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 28 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 29 -->
+  <div class="slide" data-slide="29">
+    <div class="header">
+      <div class="category">Local AI Infrastructure</div>
+      <div class="title">Step-by-Step: Installing &amp; Running Ollama on Your Laptop</div>
+      <div class="definition">Getting your local AI engine running in 4 simple steps</div>
+    </div>
+    <div class="content-area">
+      <table class="matrix-table">
+        <tr>
+          <th style="width: 15%;">Step</th>
+          <th style="width: 35%;">Action</th>
+          <th style="width: 50%;">Terminal Command / Verification</th>
+        </tr>
+        <tr>
+          <td><strong>Step 1</strong></td>
+          <td>Download &amp; Install from official portal.</td>
+          <td>Go to <code>ollama.com</code>, download installer for Windows, Mac, or Linux.</td>
+        </tr>
+        <tr>
+          <td><strong>Step 2</strong></td>
+          <td>Verify command line utility is recognized.</td>
+          <td><code>$ ollama --version</code> (Returns: <code>ollama version is 0.5.x</code>)</td>
+        </tr>
+        <tr>
+          <td><strong>Step 3</strong></td>
+          <td>Pull &amp; run lightweight 3B student model.</td>
+          <td><code>$ ollama run qwen2.5:3b</code> (Downloads &amp; opens local chat prompt)</td>
+        </tr>
+        <tr>
+          <td><strong>Step 4</strong></td>
+          <td>Verify background REST API on port 11434.</td>
+          <td><code>$ curl http://localhost:11434/api/tags</code> (Returns JSON list of local models)</td>
+        </tr>
+      </table>
+      <div class="code-box" style="margin-top: 10px;">
+        <div class="code-box-header" style="color: #27ae60;">💻 Terminal Live Execution Demonstration</div>$ ollama run qwen2.5:3b
+pulling manifest... 100%
+pulling 43f7a... 100% [==============================] 1.9 GB
+success
+&gt;&gt;&gt; Send a message (/? for help): What is Industry 4.0 in 1 sentence?
+Industry 4.0 is the intelligent networking of machines and processes using IoT and AI.
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 29 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 30 -->
+  <div class="slide" data-slide="30">
+    <div class="header">
+      <div class="category">Workflow Orchestration</div>
+      <div class="title">Step-by-Step: Setting Up n8n Locally (No Account Needed)</div>
+      <div class="definition">Visual programming for powerful digital pipelines</div>
+    </div>
+    <div class="content-area">
+      <table class="matrix-table">
+        <tr>
+          <th style="width: 15%;">Step</th>
+          <th style="width: 35%;">Action</th>
+          <th style="width: 50%;">Details &amp; Commands</th>
+        </tr>
+        <tr>
+          <td><strong>Step 1</strong></td>
+          <td>Launch n8n via Node.js in terminal.</td>
+          <td><code>$ npx n8n</code> (Runs without global installation)</td>
+        </tr>
+        <tr>
+          <td><strong>Step 2</strong></td>
+          <td>Open local browser canvas.</td>
+          <td>Navigate to: <code>http://localhost:5678</code></td>
+        </tr>
+        <tr>
+          <td><strong>Step 3</strong></td>
+          <td>Create new automated workflow.</td>
+          <td>Click '+ Add Workflow' to open the visual drag-and-drop workspace.</td>
+        </tr>
+        <tr>
+          <td><strong>Step 4</strong></td>
+          <td>Add Advanced AI Agent node.</td>
+          <td>Search 'AI Agent' in the node menu and place it in the center.</td>
+        </tr>
+      </table>
+      <div class="banner-box" style="margin-top: 10px;">
+        <strong>Why self-hosted n8n is ideal for student engineers:</strong> Unlike cloud automation tools with strict 100-execution monthly limits, self-hosted n8n lets you execute unlimited workflows every second without credit cards or throttling!
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 30 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 31 -->
+  <div class="slide" data-slide="31">
+    <div class="header">
+      <div class="category">Workflow Orchestration</div>
+      <div class="title">Connecting n8n to Localhost Ollama (The Bridge)</div>
+      <div class="definition">Linking visual workflow automation to your local AI engine</div>
+    </div>
+    <div class="content-area">
+      <div class="grid-2">
+        <div class="card card-blue">
+          <h4 style="color: #2980b9; margin-bottom: 8px;">🔌 Step-by-Step Node Configuration</h4>
+          <ol>
+            <li>Locate the <strong>Model</strong> sub-node input on your AI Agent node.</li>
+            <li>Drag and drop the <strong>Ollama Chat Model</strong> node into that input slot.</li>
+            <li>Under <em>Credentials</em>, select <em>Create New Credential</em>.</li>
+            <li>Set <strong>Base URL:</strong> <code>http://localhost:11434</code><br/>
+                <em>(If n8n is running in Docker: use <code>http://host.docker.internal:11434</code>)</em>.</li>
+            <li>In the <strong>Model</strong> field, enter: <code>qwen2.5:3b</code>.</li>
+            <li>Click <strong>Save &amp; Test Connection</strong>. A green badge confirms your local LLM is now actively powering your workflow!</li>
+          </ol>
+        </div>
+        <div class="code-box">
+          <div class="code-box-header">🖥️ n8n Visual Workflow Canvas</div>┌──────────────────────────────────┐
+│         Schedule Trigger         │ (Every 2 Hours)
+└─────────────────┬────────────────┘
+                  ▼
+┌──────────────────────────────────┐
+│      HTTP Request Scraper        │ (ssmahavidyalaya.edu.in)
+└─────────────────┬────────────────┘
+                  ▼
+┌──────────────────────────────────┐
+│          HTML Extract            │ (Notice Titles &amp; Links)
+└─────────────────┬────────────────┘
+                  ▼
+┌──────────────────────────────────┐
+│          AI Agent Node           │
+│  ┌────────────────────────────┐  │
+│  │ Ollama Model (qwen2.5:3b)  │  │
+│  │ URL: http://localhost:11434│  │
+│  └────────────────────────────┘  │
+└─────────────────┬────────────────┘
+                  ▼
+┌──────────────────────────────────┐
+│          Telegram Node           │ (Broadcast to Students)
+└──────────────────────────────────┘
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 31 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 32 -->
+  <div class="slide" data-slide="32">
+    <div class="header">
+      <div class="category">Campus Automation Use Cases</div>
+      <div class="title">Agent 1: Smart Notice Board Radar (ssmahavidyalaya.edu.in)</div>
+      <div class="definition">Never miss college announcements again</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>🎯 Objective:</strong> Students miss crucial admission, scholarship, and administrative notices buried in the SSM college blog.
+      </div>
+      <div class="grid-2">
+        <div class="card card-purple">
+          <h4 style="color: #8e44ad; margin-bottom: 6px;">⚙️ Pipeline Architecture &amp; Prompt</h4>
+          <p style="font-size: 11px; color: #7f8c8d; margin-bottom: 8px;">
+            <strong>Nodes:</strong> Schedule (2h) ➔ HTTP Request ➔ HTML Extract ➔ Ollama AI Agent ➔ Telegram Node.
+          </p>
+          <div class="code-box" style="font-size: 10.5px;">
+            <div class="code-box-header">Prompt for Ollama (qwen2.5:3b):</div>Act as an academic notice triage bot.
+Input: Scraped blog post HTML snippet.
+Task: Extract:
+1. Notice Title
+2. Category: [Admissions / Examination / Scholarship / General]
+3. Plain-language 2-sentence student summary
+4. Action Deadline (if mentioned)
+Output format: Strict JSON.
+          </div>
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📱 Student Output Broadcast (Telegram)</div>
+          📢 <strong>SSM CAMPUS RADAR: NEW NOTICE!</strong><br/><br/>
+          📌 <strong>Title:</strong> Swami Vivekananda Merit-cum-Means (SVMCM) Scholarship Renewal<br/>
+          📂 <strong>Category:</strong> Scholarship<br/>
+          ⏰ <strong>Deadline:</strong> October 25, 2026<br/><br/>
+          <strong>Summary:</strong><br/>
+          All eligible 2nd and 3rd year students must complete online verification at the college office with income certificates before Oct 25.<br/><br/>
+          🔗 <strong>Direct Link:</strong> ssmahavidyalaya.edu.in/blog/svmcm-2026/
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 32 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 33 -->
+  <div class="slide" data-slide="33">
+    <div class="header">
+      <div class="category">Campus Automation Use Cases</div>
+      <div class="title">Agent 2: Holiday &amp; College Closure Tracker</div>
+      <div class="definition">Automatic calendar syncing for festival and emergency breaks</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>🎯 Objective:</strong> Sudden campus closures, festive Puja holidays, or semester break announcements cause travel confusion.
+      </div>
+      <div class="grid-2">
+        <div class="card card-purple">
+          <h4 style="color: #8e44ad; margin-bottom: 6px;">⚙️ Pipeline Architecture &amp; Prompt</h4>
+          <p style="font-size: 11px; color: #7f8c8d; margin-bottom: 8px;">
+            <strong>Nodes:</strong> Web Scraper ➔ Filter (Keywords: 'Holiday', 'Closure') ➔ Ollama Parser ➔ Google Calendar Event.
+          </p>
+          <div class="code-box" style="font-size: 10.5px;">
+            <div class="code-box-header">Prompt for Ollama (qwen2.5:3b):</div>Act as a calendar parser for Sukumar Sengupta Mahavidyalaya.
+Analyze the vacation notice text.
+Extract:
+- Event Name (e.g. Durga Puja Vacation)
+- Closure Start Date
+- Reopening Date
+- College Administrative Contact during emergency
+Output as structured JSON.
+          </div>
+        </div>
+        <div class="output-box">
+          <div class="output-box-header">📱 Student Output Broadcast (Synced to Calendar!)</div>
+          🗓️ <strong>CAMPUS CLOSURE ALERT (Synced to Calendar!)</strong><br/><br/>
+          🏖️ <strong>Event:</strong> Durga Puja &amp; Diwali Vacation 2026<br/>
+          📅 <strong>Closed From:</strong> October 18, 2026<br/>
+          🏫 <strong>Reopening Date:</strong> November 4, 2026<br/><br/>
+          ✅ <strong>Action Taken:</strong><br/>
+          This break has been automatically scheduled in your Google Calendar with a reminder on Nov 3.<br/><br/>
+          <em>Enjoy your festive break with family! ✨</em>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 33 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 34 -->
+  <div class="slide" data-slide="34">
+    <div class="header">
+      <div class="category">Campus Automation Use Cases</div>
+      <div class="title">Agent 3: Exam Form Fill-up &amp; Routine Tracker</div>
+      <div class="definition">Protecting students from missing critical exam deadlines</div>
+    </div>
+    <div class="content-area">
+      <div class="banner-box">
+        <strong>🎯 Objective:</strong> Missing undergraduate CBCS / NEP semester examination form submission dates leads to heavy late fines.
+      </div>
+      <div class="grid-2">
+        <div class="card card-purple">
+          <h4 style="color: #8e44ad; margin-bottom: 6px;">⚙️ Pipeline Architecture &amp; Prompt</h4>
+          <p style="font-size: 11px; color: #7f8c8d; margin-bottom: 8px;">
+            <strong>Nodes:</strong> HTTP Scraper ➔ Ollama AI Agent ➔ If Node (Days Remaining &lt;= 2) ➔ High Priority Telegram Blast.
+          </p>
+          <div class="code-box" style="font-size: 10.5px;">
+            <div class="code-box-header">Prompt for Ollama (qwen2.5:3b):</div>Act as an exam officer.
+Read the Vidyasagar University form fill-up notification.
+Extract:
+- Target Semesters (e.g. 2nd, 4th, 6th Sem B.A./B.Sc./B.Com)
+- Regular Submission Window
+- Late Fee Window &amp; Amount
+- Required Verification Documents
+Format with bold warnings for tight deadlines.
+          </div>
+        </div>
+        <div class="card card-red" style="padding: 14px 16px;">
+          <h5 style="color: #c0392b; margin-bottom: 6px;">⚠️ URGENT: VU SEMESTER EXAM FORM FILL-UP!</h5>
+          <div style="font-size: 12px; line-height: 1.5; color: #2c3e50;">
+            🎓 <strong>Cohort:</strong> B.A. &amp; B.Sc. Semester IV (CBCS / NEP)<br/>
+            ⏳ <strong>Regular Form Fill-up:</strong> Oct 10 to Oct 16<br/>
+            🚨 <strong>Late Fee Window:</strong> Oct 17 to Oct 19 (+ Rs 200)<br/><br/>
+            <strong>Required Checklist:</strong><br/>
+            1. Semester III Admit Card copy<br/>
+            2. Online payment receipt of exam fees<br/>
+            3. 2 passport size photographs<br/><br/>
+            <em>Submit hardcopy to College Counter 2 before 3 PM!</em>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span>AI &amp; Industry 4.0 Workshop</span>
+      <span>Slide 34 of 35</span>
+    </div>
+  </div>
+
+  <!-- SLIDE 35 -->
+  <div class="slide closing-slide" data-slide="35">
+    <div style="font-size: 28px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">
+      YOU ARE NOW INDUSTRY 4.0 INNOVATORS! 🚀
+    </div>
+    <div style="font-size: 15px; color: #38bdf8; font-weight: 700; margin-bottom: 20px;">
+      Your 15-Minute Hands-On Challenge:
+    </div>
+    <div style="display: inline-block; text-align: left; max-width: 680px; font-size: 12px; line-height: 1.8; color: #ecf0f1; background: rgba(255, 255, 255, 0.1); padding: 18px 26px; border-radius: 8px;">
+      1. Download Ollama from <span style="color:#38bdf8;">ollama.com</span> and run <code>ollama run qwen2.5:3b</code> in your terminal.<br/>
+      2. Launch n8n locally via <code>npx n8n</code> and open <span style="color:#38bdf8;">http://localhost:5678</span>.<br/>
+      3. Build Agent 1: Scrape the SSM blog (<code>ssmahavidyalaya.edu.in/blog/</code>) and parse the latest post.<br/>
+      4. Connect your free Telegram bot token to broadcast your first automated campus notice!
+    </div>
+    <div style="font-size: 12px; color: #bdc3c7; margin-top: 20px;">
+      Zero Cloud Subscriptions &nbsp;•&nbsp; 100% Privacy &nbsp;•&nbsp; Infinite Possibilities
+    </div>
+  </div>
+
+</div>
+
+<!-- FLOATING NAV CONTROLLER -->
+<div class="nav-bar">
+  <button id="prevBtn" class="nav-btn" aria-label="Previous Slide">
+    <span>&#8592;</span> Previous
+  </button>
+  <div id="slideCounter" class="slide-counter">Slide 1 of 35</div>
+  <button id="nextBtn" class="nav-btn" aria-label="Next Slide">
+    Next <span>&#8594;</span>
+  </button>
+  <span class="keyboard-hint">(Keys: ← / → / Space)</span>
+</div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 35;
+
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const counter = document.getElementById('slideCounter');
+
+  function updateSlide(index) {
+    if (index < 1) index = 1;
+    if (index > totalSlides) index = totalSlides;
+    currentSlide = index;
+
+    slides.forEach(slide => {
+      const slideNum = parseInt(slide.getAttribute('data-slide'), 10);
+      if (slideNum === currentSlide) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    counter.textContent = `Slide ${currentSlide} of ${totalSlides}`;
+    prevBtn.disabled = (currentSlide === 1);
+    nextBtn.disabled = (currentSlide === totalSlides);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  prevBtn.addEventListener('click', () => updateSlide(currentSlide - 1));
+  nextBtn.addEventListener('click', () => updateSlide(currentSlide + 1));
+
+  // Keyboard navigation
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+      e.preventDefault();
+      updateSlide(currentSlide + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      e.preventDefault();
+      updateSlide(currentSlide - 1);
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      updateSlide(1);
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      updateSlide(totalSlides);
+    }
+  });
+
+  // Initialize
+  updateSlide(1);
+</script>
+
+</body>
+</html>
